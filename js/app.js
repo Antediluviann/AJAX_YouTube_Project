@@ -50,6 +50,7 @@ function addVideo(data) {
 	videoList.appendChild(vidElement);
 
 	vidElement.querySelectorAll('h3, img').forEach(function(element) {
+		
 		element.addEventListener('click', function() {
 			openVideo(data.id.videoId);
 			
@@ -69,15 +70,15 @@ function openVideo(id) {
 
 function getRelatedVideos(id) {
 	
-	var relatedVideosRequest = new XMLHttpRequest();
+	var relatedRequest = new XMLHttpRequest();
 
-	relatedVideosRequest.open('GET', ' https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&relatedToVideoId=' + id + '&type=video&key=' + key);
+	relatedRequest.open('GET', ' https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&relatedToVideoId=' + id + '&type=video&key=' + key);
 
-	relatedVideosRequest.onload = function() {
-		listVideos(JSON.parse(relatedVideosRequest.responseText).items);		
+	relatedRequest.onload = function() {
+		listVideos(JSON.parse(relatedRequest.responseText).items);		
 	}
 
-	relatedVideosRequest.send();
+	relatedRequest.send();
 }
 
 
@@ -85,7 +86,7 @@ function getRelatedVideos(id) {
 // INITIALIZE
 
 searchButton.addEventListener('click', onSearch);
-searchField.addEventListener('keyup', function(event) {
+searchField.addEventListener('keyup', function(e) {
    
     event.keyCode === 13 && onSearch();
 });
