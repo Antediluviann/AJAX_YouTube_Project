@@ -39,17 +39,17 @@ function listVideos(videos) {
 
 function addVideo(data) {
 
-	var videoElement = document.createElement('div');
+	var vidElement = document.createElement('div');
 	var img = '<img src="' + data.snippet.thumbnails.medium.url + '">';
 	
 	var title = '<h3>' + data.snippet.title + '</h3>';
 	var desc = '<div class="description">' + data.snippet.description + '</div>';
 
-	videoElement.innerHTML = img + '<section>' + title + desc + '</section>';
+	vidElement.innerHTML = img + '<section>' + title + desc + '</section>';
 
-	videoList.appendChild(videoElement);
+	videoList.appendChild(vidElement);
 
-	videoElement.querySelectorAll('h3, img').forEach(function(element) {
+	vidElement.querySelectorAll('h3, img').forEach(function(element) {
 		element.addEventListener('click', function() {
 			openVideo(data.id.videoId);
 			
